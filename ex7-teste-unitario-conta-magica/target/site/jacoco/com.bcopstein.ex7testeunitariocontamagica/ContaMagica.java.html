@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContaMagica.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ex7-teste-unitario-conta-magica</a> &gt; <a href="index.source.html" class="el_package">com.bcopstein.ex7testeunitariocontamagica</a> &gt; <span class="el_source">ContaMagica.java</span></div><h1>ContaMagica.java</h1><pre class="source lang-java linenums">package com.bcopstein.ex7testeunitariocontamagica;
+
+public class ContaMagica {
+    public static final int SILVER = 0;
+    public static final int GOLD = 1;
+    public static final int PLATINUM = 2;
+    
+    private String numero;
+    private String nomeCorrentista;
+    private double saldo;
+    private int status;
+
+<span class="fc" id="L13">    public ContaMagica(String numero, String nomeCorrentista) {</span>
+<span class="fc" id="L14">        this.numero = numero;</span>
+<span class="fc" id="L15">        this.nomeCorrentista = nomeCorrentista;</span>
+<span class="fc" id="L16">        this.saldo = 0.0; </span>
+<span class="fc" id="L17">        this.status = SILVER;</span>
+<span class="fc" id="L18">        verificaNome(nomeCorrentista);</span>
+<span class="fc" id="L19">        verificaNroConta(numero);</span>
+<span class="fc" id="L20">    }</span>
+
+    public String getNumeroConta(){
+<span class="fc" id="L23">        return numero;</span>
+    }
+
+    public String getNomeCorrentista(){
+<span class="fc" id="L27">        return nomeCorrentista;</span>
+    }
+
+    public double getSaldo(){
+<span class="fc" id="L31">        return saldo;</span>
+    }
+
+    public int getStatus(){
+<span class="fc" id="L35">        return status;</span>
+    }
+
+    public void deposito(int valor) throws INVALID_OPER_EXCEPTION {
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (valor &lt;= 0){</span>
+<span class="fc" id="L40">            throw new INVALID_OPER_EXCEPTION();</span>
+        }
+<span class="pc bpc" id="L42" title="2 of 4 branches missed.">        if (status == SILVER &amp;&amp; saldo &lt; 50000){</span>
+<span class="fc" id="L43">            saldo += valor;</span>
+<span class="nc bnc" id="L44" title="All 6 branches missed.">        } else if (status == GOLD &amp;&amp; saldo &gt;= 50000 &amp;&amp; saldo &lt; 200000){</span>
+<span class="nc" id="L45">            saldo += valor * 1.01; // BONUS de 1% para GOLD</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        } else if (status == PLATINUM){</span>
+<span class="nc" id="L47">            saldo += valor * 1.02; // BONUS de 2% para PLATINUM</span>
+        }
+<span class="fc" id="L49">    }</span>
+
+    public void retirada(int valor) throws INVALID_OPER_EXCEPTION {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (valor &lt;= 0){</span>
+<span class="fc" id="L53">            throw new INVALID_OPER_EXCEPTION();</span>
+        }
+<span class="pc bpc" id="L55" title="3 of 4 branches missed.">        if (status == PLATINUM &amp;&amp; saldo &gt; 100000){</span>
+<span class="nc" id="L56">            saldo -= valor;</span>
+<span class="pc bpc" id="L57" title="3 of 4 branches missed.">        } else if (status == PLATINUM &amp;&amp; saldo &lt; 100000){</span>
+<span class="nc" id="L58">            saldo -= valor;</span>
+<span class="nc" id="L59">            status = GOLD;</span>
+<span class="pc bpc" id="L60" title="3 of 4 branches missed.">        } else if (status == GOLD &amp;&amp; saldo &gt; 25000){</span>
+<span class="nc" id="L61">            saldo -= valor * 0.025; // TAXA de 2.5% para GOLD</span>
+<span class="pc bpc" id="L62" title="3 of 4 branches missed.">        } else if (status == GOLD &amp;&amp; saldo &lt;= 25000){</span>
+<span class="nc" id="L63">            saldo -= valor * 0.01; // TAXA de 1% para GOLD</span>
+<span class="nc" id="L64">            status = SILVER;</span>
+<span class="pc bpc" id="L65" title="2 of 4 branches missed.">        } else if (status == SILVER &amp;&amp; saldo - valor &gt;= 0){</span>
+<span class="fc" id="L66">            saldo -= valor;</span>
+        } else {
+<span class="nc" id="L68">            throw new INVALID_OPER_EXCEPTION();</span>
+        }
+<span class="fc" id="L70">    }</span>
+
+    private void verificaNroConta(String numero){
+<span class="fc" id="L73">        int posTraco = numero.indexOf('-');</span>
+<span class="fc" id="L74">        String nroStr = numero.substring(0, posTraco);</span>
+<span class="fc" id="L75">        int nroConta = Integer.parseInt(nroStr);</span>
+<span class="fc" id="L76">        int verificador = Integer.parseInt(numero.substring(posTraco + 1));</span>
+
+<span class="pc bpc" id="L78" title="1 of 4 branches missed.">        if (nroConta &lt; 99999 || nroConta &gt; 999999){</span>
+<span class="fc" id="L79">            throw new IllegalNumberException();</span>
+        }
+<span class="fc" id="L81">        int soma = 0;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        for (int i = 0; i &lt; nroStr.length(); i++){</span>
+<span class="fc" id="L83">            soma += (Integer.parseInt(nroStr.charAt(i) + &quot;&quot;));</span>
+        }
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">        if (soma != verificador){</span>
+<span class="nc" id="L86">            throw new IllegalNumberException();</span>
+        }
+<span class="fc" id="L88">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L92">        return &quot;ContaMagica [status=&quot; + status + &quot;, nomeCorrentista=&quot; + nomeCorrentista + &quot;, numero=&quot; + numero</span>
+                + &quot;, saldo=&quot; + saldo + &quot;]&quot;;
+    }
+
+    private void verificaNome(String nome){ 
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (nome.length() &lt; 3){</span>
+<span class="fc" id="L98">            throw new IllegalNameException();</span>
+        }
+<span class="fc" id="L100">    }</span>
+}
+
+class INVALID_OPER_EXCEPTION extends Exception {
+    public INVALID_OPER_EXCEPTION() {
+<span class="fc" id="L105">        super(&quot;Operação inválida!&quot;);</span>
+<span class="fc" id="L106">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

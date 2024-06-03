@@ -1,5 +1,6 @@
 com/bcopstein/ex7testeunitariocontamagica/Ex7TesteUnitarioContaMagicaApplication.class
 com/bcopstein/ex7testeunitariocontamagica/IllegalNumberException.class
+com/bcopstein/ex7testeunitariocontamagica/INVALID_OPER_EXCEPTION.class
 com/bcopstein/ex7testeunitariocontamagica/Categoria.class
 com/bcopstein/ex7testeunitariocontamagica/ContaMagica.class
 com/bcopstein/ex7testeunitariocontamagica/IllegalNameException.class

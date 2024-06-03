@@ -13,7 +13,7 @@ public class ContaMagicaTest {
     // Método que configura as condições iniciais para cada teste.
     void setUp() {
         // Cria uma nova instância da ContaMagica antes de cada teste.
-        conta = new ContaMagica("123456-7", "John Doe");
+        conta = new ContaMagica("999999-54", "John Doe");
     }
 
     @Test
@@ -22,12 +22,13 @@ public class ContaMagicaTest {
         // Verifica se o nome do correntista está correto.
         assertEquals("John Doe", conta.getNomeCorrentista());
         // Verifica se o número da conta está correto.
-        assertEquals("123456-7", conta.getNumeroConta());
+        assertEquals("999999-54", conta.getNumeroConta());
         // Verifica se o saldo inicial é 0.
         assertEquals(0.0, conta.getSaldo(), 0.001);
         // Verifica se a categoria inicial é SILVER.
         assertEquals(ContaMagica.SILVER, conta.getStatus());
     }
+
 
     @Test
     // Teste para verificar se depósitos válidos são tratados corretamente.
