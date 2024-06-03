@@ -24,7 +24,7 @@ public class ContaMagicaTest {
         // Verifica se o número da conta está correto.
         assertEquals("999999-54", conta.getNumeroConta());
         // Verifica se o saldo inicial é 0.
-        assertEquals(0.0, conta.getSaldo(), 0.001);
+        assertEquals(0.0, conta.getSaldo());
         // Verifica se a categoria inicial é SILVER.
         assertEquals(ContaMagica.SILVER, conta.getStatus());
     }
@@ -36,7 +36,7 @@ public class ContaMagicaTest {
         // Verifica se o método de depósito não lança exceção para um valor válido.
         conta.deposito(1000);
         // Verifica se o saldo é atualizado corretamente após o depósito.
-        assertEquals(1000, conta.getSaldo(), 0.001);
+        assertEquals(1000, conta.getSaldo());
     }
 
     @Test
@@ -51,17 +51,28 @@ public class ContaMagicaTest {
     void testaUpgradeParaGold() throws INVALID_OPER_EXCEPTION {
         // Depósito que deveria resultar em uma mudança de categoria para GOLD.
         conta.deposito(50000);
-        conta.deposito(500);
         // Verifica se a categoria foi atualizada para GOLD.
         assertEquals(ContaMagica.GOLD, conta.getStatus());
     }
+
+    @Test
+    // Teste para verificar se os depositos sao valorizados corretamente
+    void testaValorizacaoeParaGold() throws INVALID_OPER_EXCEPTION {
+        //conta para gold
+        conta.deposito(50000);
+        //depositando mais 1000
+        conta.deposito(1000);
+        // Verifica se o deposito de mais mil foi valorizado
+        assertEquals(51010, conta.getStatus());
+    }
+
 
     @Test
     // Teste para verificar se a exceção de nome inválido é lançada corretamente.
     void testaExcecaoNomeInvalido() {
         // Verifica se a exceção é lançada ao tentar criar uma conta com nome muito curto.
         Exception exception = assertThrows(IllegalNameException.class, () -> {
-            new ContaMagica("999999-54", "John Doe");
+            new ContaMagica("999999-54", "Jo");
         });
         // Verifica se a mensagem da exceção é a esperada.
         assertEquals("Nome inválido!", exception.getMessage());
@@ -85,7 +96,7 @@ public class ContaMagicaTest {
         // Verifica se o método de retirada não lança exceção para um valor válido.
         conta.retirada(200);
         // Verifica se o saldo é atualizado corretamente após a retirada.
-        assertEquals(300, conta.getSaldo(), 0.001);
+        assertEquals(300, conta.getSaldo());
     }
 
     @Test

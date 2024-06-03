@@ -39,11 +39,11 @@ public class ContaMagica {
 <span class="fc bfc" id="L39" title="All 2 branches covered.">        if (valor &lt;= 0){</span>
 <span class="fc" id="L40">            throw new INVALID_OPER_EXCEPTION();</span>
         }
-<span class="pc bpc" id="L42" title="2 of 4 branches missed.">        if (status == SILVER &amp;&amp; saldo &lt; 50000){</span>
+<span class="pc bpc" id="L42" title="1 of 4 branches missed.">        if (status == SILVER &amp;&amp; saldo &lt; 50000){</span>
 <span class="fc" id="L43">            saldo += valor;</span>
-<span class="nc bnc" id="L44" title="All 6 branches missed.">        } else if (status == GOLD &amp;&amp; saldo &gt;= 50000 &amp;&amp; saldo &lt; 200000){</span>
+<span class="pc bpc" id="L44" title="5 of 6 branches missed.">        } else if (status == GOLD &amp;&amp; saldo &gt;= 50000 &amp;&amp; saldo &lt; 200000){</span>
 <span class="nc" id="L45">            saldo += valor * 1.01; // BONUS de 1% para GOLD</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        } else if (status == PLATINUM){</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        } else if (status == PLATINUM){</span>
 <span class="nc" id="L47">            saldo += valor * 1.02; // BONUS de 2% para PLATINUM</span>
         }
 <span class="fc" id="L49">    }</span>
@@ -94,8 +94,8 @@ public class ContaMagica {
     }
 
     private void verificaNome(String nome){ 
-<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (nome.length() &lt; 3){</span>
-<span class="fc" id="L98">            throw new IllegalNameException();</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (nome.length() &lt; 3){</span>
+<span class="nc" id="L98">            throw new IllegalNameException();</span>
         }
 <span class="fc" id="L100">    }</span>
 }

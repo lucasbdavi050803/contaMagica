@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.046 s <<< FAILURE! -- in com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest
-com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaUpgradeParaGold -- Time elapsed: 0.003 s <<< FAILURE!
+Tests run: 11, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.049 s <<< FAILURE! -- in com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest
+com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaUpgradeParaGold -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -21,19 +21,29 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <0>
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:527)
-	at com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaUpgradeParaPlatinum(ContaMagicaTest.java:103)
+	at com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaUpgradeParaPlatinum(ContaMagicaTest.java:115)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaValorizacaoeParaGold -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <51010> but was: <0>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:527)
+	at com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaValorizacaoeParaGold(ContaMagicaTest.java:66)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
 com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaExcecaoNomeInvalido -- Time elapsed: 0.001 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <Nome inválido!> but was: <Nome invaido!>
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
-	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
-	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1141)
-	at com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaExcecaoNomeInvalido(ContaMagicaTest.java:66)
+org.opentest4j.AssertionFailedError: Expected com.bcopstein.ex7testeunitariocontamagica.IllegalNameException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:71)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:37)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3082)
+	at com.bcopstein.ex7testeunitariocontamagica.ContaMagicaTest.testaExcecaoNomeInvalido(ContaMagicaTest.java:74)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)

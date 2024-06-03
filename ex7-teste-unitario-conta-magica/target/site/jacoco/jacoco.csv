@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,IllegalNumberException,0,4,0,0,0,2,0,1,0,1
 ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,Categoria,21,0,0,0,2,0,1,0,1,0
-ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,IllegalNameException,0,4,0,0,0,2,0,1,0,1
-ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,ContaMagica,117,158,26,20,13,40,19,14,1,9
+ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,IllegalNameException,4,0,0,0,2,0,1,0,1,0
+ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,ContaMagica,113,162,24,22,12,41,19,14,1,9
 ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,INVALID_OPER_EXCEPTION,0,4,0,0,0,2,0,1,0,1
 ex7-teste-unitario-conta-magica,com.bcopstein.ex7testeunitariocontamagica,Ex7TesteUnitarioContaMagicaApplication,8,0,0,0,3,0,2,0,2,0
