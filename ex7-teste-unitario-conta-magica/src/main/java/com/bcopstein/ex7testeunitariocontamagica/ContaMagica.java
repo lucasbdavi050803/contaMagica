@@ -36,6 +36,7 @@ public class ContaMagica {
     }
 
     public void deposito(int valor) throws INVALID_OPER_EXCEPTION {
+
         if (valor <= 0){
             throw new INVALID_OPER_EXCEPTION();
         }
@@ -44,7 +45,15 @@ public class ContaMagica {
         } else if (status == GOLD && saldo >= 50000 && saldo < 200000){
             saldo += valor * 1.01; // BONUS de 1% para GOLD
         } else if (status == PLATINUM){
-            saldo += valor * 1.02; // BONUS de 2% para PLATINUM
+            saldo += valor * 1.025; // BONUS de 2% para PLATINUM
+        }
+        //caso seja gold vai para platinum 
+        if(getSaldo() >= 200000 && getStatus() == GOLD) {
+        this.status = 2;
+        }
+        //caso seja silver vai para gold
+        if(getSaldo() >= 50000 && getStatus() == SILVER ) {
+                this.status = 1;
         }
     }
 

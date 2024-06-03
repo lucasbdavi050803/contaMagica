@@ -47,6 +47,15 @@ public class ContaMagicaTest {
     }
 
     @Test
+    // Teste para verificar se os depositos sao valorizados corretamente para conta tipo silver
+    void testaValorizacaoeParaSilver() throws INVALID_OPER_EXCEPTION {
+        //conta deposita 1000
+        conta.deposito(1000);
+        // Verifica se o deposito de mais mil foi valorizado
+        assertEquals(1000, conta.getSaldo());
+    }
+
+    @Test
     // Teste para verificar se a categoria é atualizada corretamente ao atingir o limite.
     void testaUpgradeParaGold() throws INVALID_OPER_EXCEPTION {
         // Depósito que deveria resultar em uma mudança de categoria para GOLD.
@@ -56,14 +65,26 @@ public class ContaMagicaTest {
     }
 
     @Test
-    // Teste para verificar se os depositos sao valorizados corretamente
+    // Teste para verificar se os depositos sao valorizados corretamente para conta tipo gold
     void testaValorizacaoeParaGold() throws INVALID_OPER_EXCEPTION {
         //conta para gold
         conta.deposito(50000);
-        //depositando mais 1000
-        conta.deposito(1000);
+        conta.deposito(400);
         // Verifica se o deposito de mais mil foi valorizado
-        assertEquals(51010, conta.getStatus());
+        assertEquals(50404, conta.getSaldo());
+    }
+
+    @Test
+    // Teste para verificar se os depositos sao valorizados corretamente para conta tipo platinum
+    void testaValorizacaoeParaPlatinum() throws INVALID_OPER_EXCEPTION {
+        //conta para gold
+        conta.deposito(50000);
+        //conta para platinum
+        conta.deposito(200000);
+        // este deposito valoriza 2,5%
+        conta.deposito(400);
+        // Verifica se os depositos foram valorizados corretamente 1% gold, 2,5% platinum
+        assertEquals( 252410, conta.getSaldo());
     }
 
 
@@ -109,19 +130,35 @@ public class ContaMagicaTest {
     @Test
     // Teste para verificar se a categoria é atualizada corretamente ao atingir o limite Platinum.
     void testaUpgradeParaPlatinum() throws INVALID_OPER_EXCEPTION {
-        // Depósito que deveria resultar em uma mudança de categoria para PLATINUM.
+        // Depósito que deveria resultar em uma mudança de categoria para GOLD, ja que nao e possivel pular diretamente para platinum.
         conta.deposito(200000);
+        // Depósito que deveria resultar em uma mudança de categoria para PLATINUM
+        conta.deposito(20);
         // Verifica se a categoria foi atualizada para PLATINUM.
         assertEquals(ContaMagica.PLATINUM, conta.getStatus());
     }
 
     @Test
     // Teste para verificar se a categoria é revertida corretamente ao diminuir o saldo.
-    void testaDowngradeDeCategoria() throws INVALID_OPER_EXCEPTION {
+    void testaDowngradeDeCategoriaGoldParaSilver() throws INVALID_OPER_EXCEPTION {
         conta.deposito(100000);
+        //verifica se virou GOLD realmente
+        assertEquals(ContaMagica.GOLD, conta.getStatus());
         // Realiza uma retirada que deve resultar em uma mudança de categoria.
         conta.retirada(80000);
         // Verifica se a categoria foi atualizada para SILVER.
         assertEquals(ContaMagica.SILVER, conta.getStatus());
+    }
+
+    @Test
+    // Teste para verificar se a categoria é revertida corretamente ao diminuir o saldo.
+    void testaDowngradeDeCategoriaPlatinumParaGold() throws INVALID_OPER_EXCEPTION {
+        conta.deposito(200000);
+        conta.deposito(20);
+        // Realiza uma retirada que deve resultar em uma mudança de categoria.
+        conta.retirada(100001);
+        // Verifica se a categoria foi atualizada para GOLD
+        assertEquals(ContaMagica.GOLD, conta.getStatus());
+
     }
 }
