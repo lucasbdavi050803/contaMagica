@@ -51,6 +51,7 @@ public class ContaMagicaTest {
     void testaUpgradeParaGold() throws INVALID_OPER_EXCEPTION {
         // Depósito que deveria resultar em uma mudança de categoria para GOLD.
         conta.deposito(50000);
+        conta.deposito(500);
         // Verifica se a categoria foi atualizada para GOLD.
         assertEquals(ContaMagica.GOLD, conta.getStatus());
     }
@@ -60,7 +61,7 @@ public class ContaMagicaTest {
     void testaExcecaoNomeInvalido() {
         // Verifica se a exceção é lançada ao tentar criar uma conta com nome muito curto.
         Exception exception = assertThrows(IllegalNameException.class, () -> {
-            new ContaMagica("123456-7", "Jo");
+            new ContaMagica("999999-54", "John Doe");
         });
         // Verifica se a mensagem da exceção é a esperada.
         assertEquals("Nome inválido!", exception.getMessage());
@@ -71,7 +72,7 @@ public class ContaMagicaTest {
     void testaExcecaoNumeroInvalido() {
         // Verifica se a exceção é lançada ao tentar criar uma conta com número mal formatado.
         Exception exception = assertThrows(IllegalNumberException.class, () -> {
-            new ContaMagica("123-456", "John Doe");
+            new ContaMagica("123-1", "John Doe");
         });
         // Verifica se a mensagem da exceção é a esperada.
         assertEquals("Numero de conta invalido", exception.getMessage());
