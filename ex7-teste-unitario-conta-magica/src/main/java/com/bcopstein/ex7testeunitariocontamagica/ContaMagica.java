@@ -61,15 +61,15 @@ public class ContaMagica {
         if (valor <= 0){
             throw new INVALID_OPER_EXCEPTION();
         }
-        if (status == PLATINUM && saldo > 100000){
+        if (status == PLATINUM && saldo > 100000 && saldo - valor >= 0){
             saldo -= valor;
-        } else if (status == PLATINUM && saldo < 100000){
+        } else if (status == PLATINUM && saldo < 100000 && saldo - valor >= 0){
             saldo -= valor;
             status = GOLD;
-        } else if (status == GOLD && saldo > 25000){
-            saldo -= valor * 0.025; // TAXA de 2.5% para GOLD
-        } else if (status == GOLD && saldo <= 25000){
-            saldo -= valor * 0.01; // TAXA de 1% para GOLD
+        } else if (status == GOLD && saldo > 25000 && saldo - (valor * 1.025) >= 0){
+            saldo -= valor * 1.025; // TAXA de 2.5% para GOLD
+        } else if (status == GOLD && saldo <= 25000 && saldo - (valor * 1.01) >= 0){
+            saldo -= valor * 1.01; // TAXA de 1% para GOLD
             status = SILVER;
         } else if (status == SILVER && saldo - valor >= 0){
             saldo -= valor;

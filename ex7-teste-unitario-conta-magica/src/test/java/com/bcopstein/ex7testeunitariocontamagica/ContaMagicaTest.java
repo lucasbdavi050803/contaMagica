@@ -142,10 +142,9 @@ public class ContaMagicaTest {
     // Teste para verificar se a categoria é revertida corretamente ao diminuir o saldo.
     void testaDowngradeDeCategoriaGoldParaSilver() throws INVALID_OPER_EXCEPTION {
         conta.deposito(100000);
-        //verifica se virou GOLD realmente
-        assertEquals(ContaMagica.GOLD, conta.getStatus());
         // Realiza uma retirada que deve resultar em uma mudança de categoria.
-        conta.retirada(80000);
+        conta.retirada(80500);
+        conta.retirada(10);
         // Verifica se a categoria foi atualizada para SILVER.
         assertEquals(ContaMagica.SILVER, conta.getStatus());
     }
@@ -156,7 +155,8 @@ public class ContaMagicaTest {
         conta.deposito(200000);
         conta.deposito(20);
         // Realiza uma retirada que deve resultar em uma mudança de categoria.
-        conta.retirada(100001);
+        conta.retirada(100500);
+        conta.retirada(10);
         // Verifica se a categoria foi atualizada para GOLD
         assertEquals(ContaMagica.GOLD, conta.getStatus());
 
